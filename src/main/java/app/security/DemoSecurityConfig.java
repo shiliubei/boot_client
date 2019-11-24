@@ -55,7 +55,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login") //custom login page
-                .loginProcessingUrl("/authenticateTheUser") //Login form should POST data this URL for processing (check user id and password)
+               // .loginProcessingUrl("/authenticateTheUser") //Login form should POST data this URL for processing (check user id and password)
                 .successHandler(successHandler);
     }
 
