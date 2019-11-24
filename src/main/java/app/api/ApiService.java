@@ -23,12 +23,12 @@ public class ApiService {
 
     public User getUserByName(String userName) {
         String URL = "http://localhost:8080/admin/rest/userbyname/" + userName;
-//        HttpEntity<User> request = new HttpEntity<>(headers);
+        HttpEntity<User> request = new HttpEntity<>(headers);
 
         ResponseEntity<User> response = restTemplate.exchange(
                 URL,
                 HttpMethod.GET,
-                null,
+                request,
                 new ParameterizedTypeReference<User>() {
                 });
         return response.getBody();

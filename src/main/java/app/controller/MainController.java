@@ -18,20 +18,26 @@ import java.util.List;
 public class MainController {
 
     private final RestTemplate template;
+    private HttpHeaders headers;
 
     public MainController(RestTemplateBuilder restTemplateBuilder) {
         this.template = restTemplateBuilder
                 .basicAuthentication("admin", "admin")
                 .build();
+
+        headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
     }
 
     @GetMapping("/rest/users")
     public ResponseEntity<List<User>> listCustomers() {
         String URL = "http://localhost:8080/admin/rest/userslist";
+
+        HttpEntity<User> request = new HttpEntity<>(headers);
         ResponseEntity<List<User>> response = template.exchange(
                 URL,
                 HttpMethod.GET,
-                null,
+                request,
                 new ParameterizedTypeReference<List<User>>() {
                 });
         return response;
@@ -40,10 +46,12 @@ public class MainController {
     @GetMapping("/rest/roles")
     public ResponseEntity<List<Role>> rolesSet() {
         String URL = "http://localhost:8080/admin/rest/roles";
+
+        HttpEntity<User> request = new HttpEntity<>(headers);
         ResponseEntity<List<Role>> response = template.exchange(
                 URL,
                 HttpMethod.GET,
-                null,
+                request,
                 new ParameterizedTypeReference<List<Role>>() {
                 });
         return response;
@@ -53,10 +61,11 @@ public class MainController {
     public ResponseEntity<User> getUser(@PathVariable("id") Integer id) {
         String URL = "http://localhost:8080/admin/rest/user/" + id;
 
+        HttpEntity<User> request = new HttpEntity<>(headers);
         ResponseEntity<User> response = template.exchange(
                 URL,
                 HttpMethod.GET,
-                null,
+                request,
                 new ParameterizedTypeReference<User>() {
                 });
         return response;
