@@ -25,15 +25,12 @@ $(document).ready(function () {
                 $('form[name=addUserForm]').trigger('reset');
                 $("#formAdd")[0].reset()
                 $("#home").tab('active')
-                //name = "addUserForm"
-                //window.location.assign("http://localhost:8080/admin/userslist");
             },
             error: function (err) {
                 console.log(err);
             }
         });
         $('form[name=addUserForm]').trigger('reset');
-        //$('form[name=myForm]').trigger('reset');
     });
 
 

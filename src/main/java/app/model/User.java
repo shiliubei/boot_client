@@ -1,30 +1,22 @@
 package app.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "users")
+
 public class User implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
     private String name;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles = new HashSet<>();
 
     public User() {
@@ -55,7 +47,6 @@ public class User implements UserDetails {
     }
 
     @Override
-    //@JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
@@ -66,31 +57,26 @@ public class User implements UserDetails {
     }
 
     @Override
-    //@JsonIgnore
     public String getUsername() {
         return name;
     }
 
     @Override
-    //@JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    //@JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    //@JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    //@JsonIgnore
     public boolean isEnabled() {
         return true;
     }

@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class ClientUserDetailsService implements UserDetailsService {
 
     private final ApiService apiService;
 
-    public MyUserDetailsService (ApiService apiService) {
+    public ClientUserDetailsService(ApiService apiService) {
         this.apiService = apiService;
     }
 
