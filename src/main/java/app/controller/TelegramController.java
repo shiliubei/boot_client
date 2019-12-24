@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.SongRequest;
 import app.model.TelegramUser;
 import app.model.User;
 import app.service.TelegramService;
@@ -21,16 +22,12 @@ public class TelegramController {
     }
 
     @PostMapping(value = "/song")
-    public void add(@RequestBody TelegramUser tlgUser) {
-        telegramService.sendSongToBot(tlgUser);
-            String songName = tlgUser.getSongName();
-        System.out.println(tlgUser.getChatId() + " song: "+ songName);
+    public void add(@RequestBody SongRequest songRequest) {
+        telegramService.sendSongToBot(songRequest);
     }
 
     @PostMapping(value = "/approve")
-    public void approve (@RequestBody TelegramUser tlgUser) {
-        String songName = tlgUser.getSongName();
-        telegramService.approve(tlgUser);
-        System.out.println(tlgUser.getChatId() + " song: "+ songName);
+    public void approve (@RequestBody SongRequest songRequest) {
+        System.out.println(songRequest.getSongId());
     }
 }
