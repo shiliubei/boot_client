@@ -21,16 +21,16 @@ public class TelegramServiceImpl implements TelegramService {
     }
 
     @Override
-    public SongResponce sendSongToBot (SongRequest songRequest) {
+    public SongResponce sendSongToBot(SongRequest songRequest) {
         String URL = "http://localhost:8888/bot/song";
         File file = new File("D:\\pacman\\We Wish You A Merry Christmas.mp3");
-        SongResponce songResponce = new SongResponce(songRequest.getChatId(),25122019l,file);
+        SongResponce songResponce = new SongResponce(songRequest.getChatId(),25122019l, file);
 
         return restTemplate.postForObject(URL, songResponce, SongResponce.class);
     }
 
     @Override
-    public TelegramUser approve (TelegramUser telegramUser) {
+    public TelegramUser approve(TelegramUser telegramUser) {
         String URL = "http://localhost:8888/bot/approve";
         return restTemplate.postForObject(URL, telegramUser, TelegramUser.class);
     }
